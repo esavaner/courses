@@ -1,0 +1,46 @@
+fragment ProductItem on Product {
+  id
+  name
+  description
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+  rating
+}
+
+fragment ProductListItem on Product {
+  id
+  name
+  categories(first: 1) {
+    name
+  }
+  images(first: 1) {
+    url
+  }
+  price
+  rating
+}
+
+fragment Cart on Order {
+  id
+  orderItems {
+    id
+    quantity
+    total
+    product {
+      id
+      name
+      price
+    }
+  }
+}
+
+fragment CollectionListItem on Collection {
+  id
+  name
+  slug
+}

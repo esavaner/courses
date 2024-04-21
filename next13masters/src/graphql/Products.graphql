@@ -1,0 +1,25 @@
+query ProductGetById($id: ID!) {
+  products(where: { id: $id }) {
+    ...ProductItem
+  }
+}
+
+query ProductsGetList($skip: Int!, $first: Int!) {
+  products(skip: $skip, first: $first) {
+    ...ProductListItem
+  }
+}
+
+query ProductsCount {
+  productsConnection {
+    aggregate {
+      count
+    }
+  }
+}
+
+query ProductsSearchByQuery($query: String!) {
+  products(where: { name_contains: $query }) {
+    ...ProductListItem
+  }
+}
