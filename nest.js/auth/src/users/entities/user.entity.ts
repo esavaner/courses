@@ -19,17 +19,27 @@ export class User {
   @Column({ nullable: true })
   password: string;
 
+  // GOOGLE
   @Column({ nullable: true })
   googleId: string;
 
+  // ROLE (exclusive to PERMISSION)
   @Column({ enum: Role, default: Role.Regular })
   role: Role;
 
-  // permission instead of role
+  // 2FA
+  @Column({ default: false })
+  isTfaEnabled: boolean;
+
+  @Column({ nullable: true })
+  tfaSecret: string;
+
+  // PERMISSION (exclusive to ROLE)
   // @Column({ enum: Permission, default: [], type: 'json' })
   // permissions: PermissionType[];
 
-  @JoinTable() // 👈
+  // APIKEY
+  @JoinTable()
   @OneToMany((type) => ApiKey, (apiKey) => apiKey.user)
   apiKeys: ApiKey[];
 }
